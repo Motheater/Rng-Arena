@@ -144,6 +144,51 @@
             border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
+        /* Стилизация интерактивных таблиц */
+        .wiki-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 14px;
+            text-align: left;
+        }
+
+        .wiki-table th, .wiki-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: middle;
+        }
+
+        .wiki-table th {
+            background-color: var(--bg-nav);
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .wiki-table tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .rarity-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-align: center;
+            min-width: 75px;
+        }
+
+        /* Цвета редкостей под новые типы */
+        .rarity-common { color: #ffffff; background-color: #3e4449; }
+        .rarity-rare { color: #3498db; background-color: rgba(52, 152, 219, 0.15); }
+        .rarity-epic { color: #9b59b6; background-color: rgba(155, 89, 182, 0.15); }
+        .rarity-legendary { color: #f1c40f; background-color: rgba(241, 196, 15, 0.15); }
+        .rarity-mythic { color: #e74c3c; background-color: rgba(231, 76, 60, 0.15); }
+
         /* Идеальная галерея картинок */
         .image-gallery {
             display: grid;
@@ -247,11 +292,12 @@
     <main>
         <div class="nav-buttons">
             <button class="nav-btn active" onclick="openTab('home', this)">Главная</button>
-            <button class="nav-btn" onclick="openTab('effects', this)">Обычные</button>
-            <button class="nav-btn" onclick="openTab('badges', this)">Бейджи</button>
+            <button class="nav-btn" onclick="openTab('effects', this)">Все абилки</button>
+            <button class="nav-btn" onclick="openTab('badges', this)">Редкие баффы</button>
             <button class="nav-btn" onclick="openTab('secrets', this)">Пасхалки</button>
         </div>
 
+        <!-- ГЛАВНАЯ -->
         <div id="home" class="content-section active">
             <h2>Добро пожаловать в RNG Arena Вики!</h2>
             <p>Привет! Это неофициальная база знаний по игре RNG Arena, созданная специально для отслеживания всех крутых эффектов, секретов и редких наград.</p>
@@ -259,19 +305,79 @@
             <p>Выбирай нужный раздел в меню выше, чтобы начать изучение!</p>
         </div>
 
+        <!-- ВСЕ АБИЛКИ ИЗ СКРИНШОТОВ -->
         <div id="effects" class="content-section">
-            <h2>Обычные эффекты</h2>
-            <p>Тут будет твой список обычных эффектов. Можешь добавлять их списком или таблицей.</p>
+            <h2>Полный список боевых абилок (Сортировка по редкости)</h2>
+            <table class="wiki-table">
+                <thead>
+                    <tr>
+                        <th>Название абилки</th>
+                        <th>Шанс ролла</th>
+                        <th>Характеристики и Эффект</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Обычные / Начальные -->
+                    <tr><td><b>Punch</b> (Удар)</td><td><span class="rarity-badge rarity-common">1 из 3</span></td><td>Базовый урон ближнего боя. Быстрый откат.</td></tr>
+                    <tr><td><b>Kick</b> (Пинок)</td><td><span class="rarity-badge rarity-common">1 из 5</span></td><td>Наносит средний урон и отталкивает цель назад.</td></tr>
+                    <tr><td><b>Pebble</b> (Камешек)</td><td><span class="rarity-badge rarity-common">1 из 10</span></td><td>Слабая дальняя атака броском мелкого камня.</td></tr>
+                    <tr><td><b>Banana</b> (Банан)</td><td><span class="rarity-badge rarity-common">1 из 20</span></td><td>Спавнит кожуру. Наступивший враг застревает в анимации падения.</td></tr>
+                    <tr><td><b>Slam</b> (Удар об землю)</td><td><span class="rarity-badge rarity-common">1 из 25</span></td><td>Приземление всем телом, наносит АОЕ-урон вокруг игрока.</td></tr>
+                    <tr><td><b>Heavy</b> (Тяжелый удар)</td><td><span class="rarity-badge rarity-common">1 из 30</span></td><td>Сильный силовой удар с долгой подготовкой анимации.</td></tr>
+                    <tr><td><b>Wither</b> (Иссушение)</td><td><span class="rarity-badge rarity-common">1 из 35</span></td><td>Накладывает на цель постепенный периодический урон (DoT).</td></tr>
+                    <tr><td><b>Levitation</b> (Левитация)</td><td><span class="rarity-badge rarity-common">1 из 40</span></td><td>Позволяет ненадолго зависнуть в воздухе, избегая наземных атак.</td></tr>
+                    <tr><td><b>Warp</b> (Искажение)</td><td><span class="rarity-badge rarity-common">1 из 50</span></td><td>Короткий резкий телепорт вперед по направлению взгляда.</td></tr>
+                    <tr><td><b>Ice</b> (Лёд)</td><td><span class="rarity-badge rarity-common">1 из 65</span></td><td>Замораживает противника на пару секунд, блокируя его движения.</td></tr>
+                    <tr><td><b>Randomizer</b> (Рандомайзер)</td><td><span class="rarity-badge rarity-common">1 из 75</span></td><td>При использовании превращается в случайную базовую атаку.</td></tr>
+                    <tr><td><b>Earth</b> (Земля)</td><td><span class="rarity-badge rarity-common">1 из 80</span></td><td>Поднимает каменную стену из земли, блокируя чужие снаряды.</td></tr>
+                    <tr><td><b>Metal</b> (Металл)</td><td><span class="rarity-badge rarity-rare">1 из 100</span></td><td>Покрывает тело броней, сильно снижая любой входящий урон.</td></tr>
+                    <tr><td><b>Landmine</b> (Мина)</td><td><span class="rarity-badge rarity-rare">1 из 120</span></td><td>Скрытая наземная ловушка. Взрывается при наступлении.</td></tr>
+                    
+                    <!-- Средняя редкость -->
+                    <tr><td><b>Tesla</b> (Тесла)</td><td><span class="rarity-badge rarity-rare">1 из 160</span></td><td>Бьет цепной молнией, которая перекидывается на соседних врагов.</td></tr>
+                    <tr><td><b>Corrosive</b> (Кислота)</td><td><span class="rarity-badge rarity-rare">1 из 185</span></td><td>Разъедает защиту цели, увеличивая получаемый ею дамаг.</td></tr>
+                    <tr><td><b>Rocketeer</b> (Ракетчик)</td><td><span class="rarity-badge rarity-rare">1 из 200</span></td><td>Выстрел мощной ракетой с огромным радиусом взрывной волны.</td></tr>
+                    <tr><td><b>Phantom</b> (Фантом)</td><td><span class="rarity-badge rarity-rare">1 из 260</span></td><td>Персонаж становится полупрозрачным и частично игнорирует атаки.</td></tr>
+                    <tr><td><b>Blood</b> (Кровь)</td><td><span class="rarity-badge rarity-epic">1 из 325</span></td><td>Режим вампиризма — восстанавливает ОЗ при нанесении урона.</td></tr>
+                    <tr><td><b>Flame</b> (Пламя)</td><td><span class="rarity-badge rarity-epic">1 из 400</span></td><td>Огненное дыхание, которое поджигает всё перед игроком.</td></tr>
+                    <tr><td><b>Crystallized</b> (Кристалл)</td><td><span class="rarity-badge rarity-epic">1 из 500</span></td><td>Призывает острые кристаллы из земли, протыкающие цели.</td></tr>
+                    
+                    <!-- Высокая редкость и Мифические -->
+                    <tr><td><b>Celestial</b> (Небожитель)</td><td><span class="rarity-badge rarity-legendary">1 из 625</span></td><td>Создает красивую космическую ауру и баффает скорость бега.</td></tr>
+                    <tr><td><b>Barrier</b> (Барьер)</td><td><span class="rarity-badge rarity-legendary">1 из 800</span></td><td>Силовой щит, который полностью поглощает несколько ударов.</td></tr>
+                    <tr><td><b>Binary</b> (Бинарный код)</td><td><span class="rarity-badge rarity-legendary">1 из 1010</span></td><td>Глючный эффект, наносящий абсолютно случайный урон (от 1 до 100).</td></tr>
+                    <tr><td><b>Time</b> (Время)</td><td><span class="rarity-badge rarity-mythic">1 из 1500</span></td><td>Замедляет время вокруг игрока, позволяя легко увернуться.</td></tr>
+                    <tr><td><b>Light</b> (Свет)</td><td><span class="rarity-badge rarity-mythic">1 Exhibition</span></td><td>Ослепляет всех противников на арене белой вспышкой экрана.</td></tr>
+                    <tr><td><b>Cosmos</b> (Космос)</td><td><span class="rarity-badge rarity-mythic">1 из 2000</span></td><td>Призывает метеоритный дождь, крушащий арену.</td></tr>
+                    <tr><td><b>Illusionary</b> (Иллюзия)</td><td><span class="rarity-badge rarity-mythic">1 из 2500</span></td><td>Создает двух ложных двойников персонажа для отвлечения внимания.</td></tr>
+                    <tr><td><b>Anomaly</b> (Аномалия)</td><td><span class="rarity-badge rarity-mythic">1 из 3000</span></td><td>Топовый ролл. Ломает гравитацию на карте, подбрасывая всех вверх.</td></tr>
+                </tbody>
+            </table>
         </div>
 
+        <!-- РЕДКИЕ БАФФЫ И СЕКРЕТЫ (Вкладка Бейджи) -->
         <div id="badges" class="content-section">
-            <h2>Эффекты за бейджи</h2>
-            <p>Тут будет твой список эффектов, которые выдаются за выполнение достижений и бейджей.</p>
+            <h2>Дополнительные механики прокачки</h2>
+            <p>Помимо основных роллов способностей, в игре важны пассивные механики:</p>
+            <table class="wiki-table">
+                <thead>
+                    <tr>
+                        <th>Тип улучшения</th>
+                        <th>Что дает персонажу</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><b>Luck Boost (Множитель удачи)</b></td><td>Позволяет быстрее выбивать ультра-редкие мифические абилки типа Cosmos и Anomaly.</td></tr>
+                    <tr><td><b>Roll Speed Cooldown</b></td><td>Уменьшает время ожидания между случайными прокрутками способностей.</td></tr>
+                    <tr><td><b>Серии побед (Winstreaks)</b></td><td>Открывают доступ к скрытым визуальным аурам персонажа и уникальным титулам в чате.</td></tr>
+                </tbody>
+            </table>
         </div>
 
+        <!-- ПАСХАЛКИ -->
         <div id="secrets" class="content-section">
-            <h2>Пасхалки и секреты</h2>
-            <p>Тут будет твой список скрытых механик, секретных комнат и пасхалок на карте.</p>
+            <h2>Пасхалки и секреты карты</h2>
+            <p>Используйте абилки вроде <i>Warp</i> или <i>Levitation</i>, чтобы забираться в скрытые места локации и находить секретные проходы!</p>
             
             <div class="image-gallery">
                 <img src="1.png" alt="Секрет 1" class="gallery-img">
@@ -325,4 +431,5 @@
     </script>
 
 </body>
-</html>
+    </html>
+    
