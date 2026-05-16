@@ -155,18 +155,72 @@
         .image-gallery img {
             width: 100%;
             height: auto;
-            aspect-ratio: 1 / 1; /* Делает все превью квадратными и ровными */
+            aspect-ratio: 1 / 1;
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.5);
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.05);
+            cursor: pointer; /* Делает курсор в виде руки */
         }
 
         .image-gallery img:hover {
             transform: scale(1.08);
             border-color: var(--accent);
             box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* МОДАЛЬНОЕ ОКНО ДЛЯ ПРОСМОТРА КАРТИНКИ */
+        .modal {
+            display: none; /* Скрыто по умолчанию */
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 17, 19, 0.9); /* Темный полупрозрачный фон */
+            backdrop-filter: blur(8px); /* Красивое размытие заднего плана */
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+            object-fit: contain; /* Картинка не деформируется */
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1);
+        }
+
+        /* Кнопка закрытия (крестик) */
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: color 0.2s ease;
+            user-select: none;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
         }
 
         /* Анимации */
@@ -219,19 +273,27 @@
             <h2>Пасхалки и секреты</h2>
             <p>Тут будет твой список скрытых механик, секретных комнат и пасхалок на карте.</p>
             
+            <!-- Добавлен класс gallery-img для скрипта -->
             <div class="image-gallery">
-                <img src="1.png" alt="Секрет 1">
-                <img src="2.png" alt="Секрет 2">
-                <img src="3.png" alt="Секрет 3">
-                <img src="5.png" alt="Секрет 4">
-                <img src="6.png" alt="Секрет 5">
-                <img src="7.png" alt="Секрет 6">
-                <img src="8.png" alt="Секрет 7">
+                <img src="1.png" alt="Секрет 1" class="gallery-img">
+                <img src="2.png" alt="Секрет 2" class="gallery-img">
+                <img src="3.png" alt="Секрет 3" class="gallery-img">
+                <img src="5.png" alt="Секрет 4" class="gallery-img">
+                <img src="6.png" alt="Секрет 5" class="gallery-img">
+                <img src="7.png" alt="Секрет 6" class="gallery-img">
+                <img src="8.png" alt="Секрет 7" class="gallery-img">
             </div>
         </div>
     </main>
 
+    <!-- Новое модальное окно -->
+    <div id="imageModal" class="modal" onclick="closeImage()">
+        <span class="close-modal" onclick="closeImage()">&times;</span>
+        <img class="modal-content" id="fullImage">
+    </div>
+
     <script>
+        // Функция переключения вкладок
         function openTab(tabId, button) {
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(section => section.classList.remove('active'));
@@ -242,6 +304,31 @@
             document.getElementById(tabId).classList.add('active');
             button.classList.add('active');
         }
+
+        // Логика модального окна для картинок
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('fullImage');
+        const galleryImages = document.querySelectorAll('.gallery-img');
+
+        // Вешаем клик на все картинки галереи
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                modal.classList.add('show');
+                modalImg.src = this.src; // Берем путь из мелкой картинки
+            });
+        });
+
+        // Функция закрытия окна
+        function closeImage() {
+            modal.classList.remove('show');
+        }
+
+        // Закрытие по кнопке Esc для удобства
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeImage();
+            }
+        });
     </script>
 
 </body>
