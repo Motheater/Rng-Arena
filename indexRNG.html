@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RNG Arena Вики от motheater</title>
+    <style>
+        /* Базовые стили для чистого темного дизайна */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1c1e;
+            color: #e3e2e6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Шапка сайта */
+        header {
+            background-color: #2d3135;
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-bottom: 3px solid #4f9d5d;
+        }
+
+        .header-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(79, 157, 93, 0.4);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        /* Основной контейнер */
+        main {
+            max-width: 800px;
+            width: 90%;
+            margin: 30px 0;
+            background-color: #212529;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Кнопки навигации */
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .nav-btn {
+            background-color: #2d3135;
+            color: #4f9d5d;
+            border: 2px solid #4f9d5d;
+            padding: 12px 10px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .nav-btn:hover {
+            background-color: #4f9d5d;
+            color: #1a1c1e;
+        }
+
+        .nav-btn.active {
+            background-color: #4f9d5d;
+            color: #1a1c1e;
+            box-shadow: 0 0 10px rgba(79, 157, 93, 0.5);
+        }
+
+        /* Контентные блоки */
+        .content-section {
+            display: none; /* По умолчанию скрыты */
+            line-height: 1.6;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .content-section.active {
+            display: block; /* Показывается только активный */
+        }
+
+        h2 {
+            color: #4f9d5d;
+            margin-top: 0;
+            border-bottom: 1px solid #3a3f44;
+            padding-bottom: 8px;
+        }
+
+        /* Анимация появления текста */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Шапка сайта -->
+    <header>
+        <div class="header-container">
+            <!-- Укажи правильный путь к картинке авы в src -->
+            <img src="avatar.png" alt="RNG Arena Logo">
+            <h1>rng arena вики от motheater</h1>
+        </div>
+    </header>
+
+    <!-- Основной блок -->
+    <main>
+        <!-- Кнопки управления вкладками -->
+        <div class="nav-buttons">
+            <button class="nav-btn active" onclick="openTab('home', this)">Главная</button>
+            <button class="nav-btn" onclick="openTab('effects', this)">Обычные эффекты</button>
+            <button class="nav-btn" onclick="openTab('badges', this)">Эффекты за бейджи</button>
+            <button class="nav-btn" onclick="openTab('secrets', this)">Пасхалки</button>
+        </div>
+
+        <!-- ВКЛАДКА: ГЛАВНАЯ (ПРИВЕТСТВИЕ) -->
+        <div id="home" class="content-section active">
+            <h2>Добро пожаловать в RNG Arena Вики!</h2>
+            <p>Привет! Это неофициальная база знаний по игре RNG Arena, созданная специально для отслеживания всех крутых эффектов, секретов и редких наград.</p>
+            <p>Здесь ты найдешь подробное описание каждого предмета, шансы их выпадения и способы получения скрытых ачивок.</p>
+            <p>Выбирай нужный раздел в меню выше, чтобы начать изучение!</p>
+        </div>
+
+        <!-- ВКЛАДКА: ОБЫЧНЫЕ ЭФФЕКТЫ -->
+        <div id="effects" class="content-section">
+            <h2>Обычные эффекты</h2>
+            <p>Тут будет твой список обычных эффектов. Можешь добавлять их списком или таблицей.</p>
+            <!-- Место для твоего текста -->
+        </div>
+
+        <!-- ВКЛАДКА: ЭФФЕКТЫ ЗА БЕЙДЖИ -->
+        <div id="badges" class="content-section">
+            <h2>Эффекты за бейджи</h2>
+            <p>Тут будет твой список эффектов, которые выдаются за выполнение достижений и бейджей.</p>
+            <!-- Место для твоего текста -->
+        </div>
+
+        <!-- ВКЛАДКА: ПАСХАЛКИ -->
+        <div id="secrets" class="content-section">
+            <h2>Пасхалки и секреты</h2>
+            <p>Тут будет твой список скрытых механик, секретных комнат и пасхалок на карте.</p>
+            <!-- Место для твоего текста -->
+        </div>
+    </main>
+
+    <!-- Скрипт для быстрого переключения вкладок без перезагрузки -->
+    <script>
+        function openTab(tabId, button) {
+            // Скрываем все разделы с текстом
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Убираем подсветку со всех кнопок
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Показываем нужный раздел и подсвечиваем кликнутую кнопку
+            document.getElementById(tabId).classList.add('active');
+            button.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
