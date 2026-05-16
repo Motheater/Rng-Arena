@@ -161,7 +161,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.5);
             transition: all 0.3s ease;
             border: 1px solid rgba(255,255,255,0.05);
-            cursor: pointer; /* Делает курсор в виде руки */
+            cursor: pointer;
         }
 
         .image-gallery img:hover {
@@ -172,15 +172,15 @@
 
         /* МОДАЛЬНОЕ ОКНО ДЛЯ ПРОСМОТРА КАРТИНКИ */
         .modal {
-            display: none; /* Скрыто по умолчанию */
+            display: none;
             position: fixed;
             z-index: 1000;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(15, 17, 19, 0.9); /* Темный полупрозрачный фон */
-            backdrop-filter: blur(8px); /* Красивое размытие заднего плана */
+            background-color: rgba(15, 17, 19, 0.9);
+            backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
             opacity: 0;
@@ -199,7 +199,7 @@
             box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
             transform: scale(0.9);
             transition: transform 0.3s ease;
-            object-fit: contain; /* Картинка не деформируется */
+            object-fit: contain;
         }
 
         .modal.show .modal-content {
@@ -273,7 +273,6 @@
             <h2>Пасхалки и секреты</h2>
             <p>Тут будет твой список скрытых механик, секретных комнат и пасхалок на карте.</p>
             
-            <!-- Добавлен класс gallery-img для скрипта -->
             <div class="image-gallery">
                 <img src="1.png" alt="Секрет 1" class="gallery-img">
                 <img src="3.png" alt="Секрет 3" class="gallery-img">
@@ -285,14 +284,13 @@
         </div>
     </main>
 
-    <!-- Новое модальное окно -->
+    <!-- Модальное окно -->
     <div id="imageModal" class="modal" onclick="closeImage()">
         <span class="close-modal" onclick="closeImage()">&times;</span>
         <img class="modal-content" id="fullImage">
     </div>
 
     <script>
-        // Функция переключения вкладок
         function openTab(tabId, button) {
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(section => section.classList.remove('active'));
@@ -304,25 +302,21 @@
             button.classList.add('active');
         }
 
-        // Логика модального окна для картинок
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('fullImage');
         const galleryImages = document.querySelectorAll('.gallery-img');
 
-        // Вешаем клик на все картинки галереи
         galleryImages.forEach(img => {
             img.addEventListener('click', function() {
                 modal.classList.add('show');
-                modalImg.src = this.src; // Берем путь из мелкой картинки
+                modalImg.src = this.src;
             });
         });
 
-        // Функция закрытия окна
         function closeImage() {
             modal.classList.remove('show');
         }
 
-        // Закрытие по кнопке Esc для удобства
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeImage();
