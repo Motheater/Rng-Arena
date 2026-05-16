@@ -429,7 +429,30 @@
             }
         });
     </script>
+<!-- Начало кода со смайликом -->
+<div id="secretSmiley" onclick="window.location.href='snake.html'">😊</div>
 
+<style>
+    #secretSmiley {
+        font-size: 50px;
+        margin: 20px auto;
+        cursor: pointer;
+        display: block;
+        width: max-content;
+        user-select: none;
+        animation: spinSmiley 4s linear infinite;
+        transition: transform 0.2s ease;
+    }
+    #secretSmiley:hover {
+        transform: scale(1.2);
+    }
+    @keyframes spinSmiley {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+</style>
+<!-- Конец кода со смайликом -->
+    
 </body>
     </html>
     
