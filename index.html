@@ -5,139 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RNG Arena Вики от motheater</title>
     <style>
-        /* Базовые стили для чистого темного дизайна */
+        /* Современные CSS переменные для легкой кастомизации цвета */
+        :root {
+            --bg-main: #0f1113;
+            --bg-card: #1a1d20;
+            --bg-nav: #23272a;
+            --accent: #4f9d5d;
+            --accent-glow: rgba(79, 157, 93, 0.3);
+            --text-main: #f0f2f5;
+            --text-muted: #9aa0a6;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1c1e;
-            color: #e3e2e6;
+            font-family: 'Segoe UI', Inter, system-ui, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
         }
 
         /* Шапка сайта */
         header {
-            background-color: #2d3135;
+            background-color: var(--bg-card);
             width: 100%;
-            text-align: center;
-            padding: 20px 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            border-bottom: 3px solid #4f9d5d;
+            padding: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border-bottom: 2px solid var(--accent);
+            box-sizing: border-box;
         }
 
         .header-container {
             max-width: 800px;
             margin: 0 auto;
+            padding: 0 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
 
         header img {
-            width: 120px;
-            height: 120px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(79, 157, 93, 0.4);
+            width: 100px;
+            height: 100px;
+            border-radius: 16px;
+            box-shadow: 0 0 20px var(--accent-glow);
+            object-fit: cover;
         }
 
         header h1 {
             margin: 0;
-            font-size: 24px;
-            color: #ffffff;
-            letter-spacing: 1px;
+            font-size: 28px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         /* Основной контейнер */
         main {
             max-width: 800px;
             width: 90%;
-            margin: 30px 0;
-            background-color: #212529;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            margin: 40px 0;
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            box-sizing: border-box;
         }
 
-        /* Кнопки навигации */
+        /* Кнопки навигации — теперь полностью адаптивные */
         .nav-buttons {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 10px;
-            margin: 25px 0;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 35px;
         }
 
         .nav-btn {
-            background-color: #2d3135;
-            color: #4f9d5d;
-            border: 2px solid #4f9d5d;
-            padding: 12px 5px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 8px;
+            background-color: var(--bg-nav);
+            color: var(--text-main);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 14px 10px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
         }
 
         .nav-btn:hover {
-            background-color: #4f9d5d;
-            color: #1a1c1e;
+            border-color: var(--accent);
+            background-color: rgba(79, 157, 93, 0.05);
+            color: var(--accent);
+            transform: translateY(-2px);
         }
 
         .nav-btn.active {
-            background-color: #4f9d5d;
-            color: #1a1c1e;
-            box-shadow: 0 0 10px rgba(79, 157, 93, 0.5);
+            background-color: var(--accent);
+            color: var(--bg-main);
+            font-weight: 700;
+            border-color: var(--accent);
+            box-shadow: 0 4px 15px var(--accent-glow);
         }
 
         /* Контентные блоки */
         .content-section {
-            display: none; /* По умолчанию скрыты */
-            line-height: 1.6;
-            animation: fadeIn 0.3s ease;
+            display: none;
+            line-height: 1.7;
+            color: var(--text-main);
         }
 
         .content-section.active {
-            display: block; /* Показывается только активный */
+            display: block;
+            animation: fadeIn slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .content-section p {
+            font-size: 16px;
+            color: #c9ccd0;
+            margin: 0 0 16px 0;
         }
 
         h2 {
-            color: #4f9d5d;
+            color: var(--accent);
+            font-size: 22px;
+            font-weight: 700;
             margin-top: 0;
-            border-bottom: 1px solid #3a3f44;
-            padding-bottom: 8px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
-        /* Стиль для сетки картинок, чтобы они стояли ровно */
+        /* Идеальная галерея картинок */
         .image-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
         }
 
         .image-gallery img {
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-            transition: transform 0.2s ease;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1; /* Делает все превью квадратными и ровными */
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
         }
 
         .image-gallery img:hover {
-            transform: scale(1.05); /* Легкое увеличение при наведении */
+            transform: scale(1.08);
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
 
-        /* Анимация появления текста */
+        /* Анимации */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(10px); }
+            to { transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Шапка сайта -->
     <header>
         <div class="header-container">
             <img src="avatar.png" alt="RNG Arena Logo">
@@ -145,9 +190,7 @@
         </div>
     </header>
 
-    <!-- Основной блок -->
     <main>
-        <!-- Кнопки управления вкладками -->
         <div class="nav-buttons">
             <button class="nav-btn active" onclick="openTab('home', this)">Главная</button>
             <button class="nav-btn" onclick="openTab('effects', this)">Обычные</button>
@@ -155,7 +198,6 @@
             <button class="nav-btn" onclick="openTab('secrets', this)">Пасхалки</button>
         </div>
 
-        <!-- ВКЛАДКА: ГЛАВНАЯ (ПРИВЕТСТВИЕ) -->
         <div id="home" class="content-section active">
             <h2>Добро пожаловать в RNG Arena Вики!</h2>
             <p>Привет! Это неофициальная база знаний по игре RNG Arena, созданная специально для отслеживания всех крутых эффектов, секретов и редких наград.</p>
@@ -163,50 +205,40 @@
             <p>Выбирай нужный раздел в меню выше, чтобы начать изучение!</p>
         </div>
 
-        <!-- ВКЛАДКА: ОБЫЧНЫЕ ЭФФЕКТЫ -->
         <div id="effects" class="content-section">
             <h2>Обычные эффекты</h2>
             <p>Тут будет твой список обычных эффектов. Можешь добавлять их списком или таблицей.</p>
-            <!-- Место для твоего текста -->
         </div>
 
-        <!-- ВКЛАДКА: ЭФФЕКТЫ ЗА БЕЙДЖИ -->
         <div id="badges" class="content-section">
             <h2>Эффекты за бейджи</h2>
             <p>Тут будет твой список эффектов, которые выдаются за выполнение достижений и бейджей.</p>
-            <!-- Место для твоего текста -->
         </div>
 
-        <!-- ВКЛАДКА: ПАСХАЛКИ -->
         <div id="secrets" class="content-section">
             <h2>Пасхалки и секреты</h2>
             <p>Тут будет твой список скрытых механик, секретных комнат и пасхалок на карте.</p>
             
-            <!-- Исправленная галерея картинок без кривой 4-й -->
             <div class="image-gallery">
-                <img src="1.png" width="150">
-                <img src="2.png" width="150">
-                <img src="3.png" width="150">
-                <img src="5.png" width="150">
-                <img src="6.png" width="150">
-                <img src="7.png" width="150">
-                <img src="8.png" width="150">
+                <img src="1.png" alt="Секрет 1">
+                <img src="2.png" alt="Секрет 2">
+                <img src="3.png" alt="Секрет 3">
+                <img src="5.png" alt="Секрет 4">
+                <img src="6.png" alt="Секрет 5">
+                <img src="7.png" alt="Секрет 6">
+                <img src="8.png" alt="Секрет 7">
             </div>
         </div>
     </main>
 
-    <!-- Скрипт для быстрого переключения вкладок без перезагрузки -->
     <script>
         function openTab(tabId, button) {
-            // Скрываем все разделы с текстом
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(section => section.classList.remove('active'));
 
-            // Убираем подсветку со всех кнопок
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
 
-            // Показываем нужный раздел и подсвечиваем кликнутую кнопку
             document.getElementById(tabId).classList.add('active');
             button.classList.add('active');
         }
